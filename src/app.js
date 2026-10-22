@@ -32,7 +32,8 @@ import userRoutes from "./routes/userRoutes.js";
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const allowedOrigins = [...new Set([...env.corsOrigins, env.clientUrl, "http://localhost:5173"].filter(Boolean))];
+const defaultDevOrigins = ["http://localhost:5173", "http://127.0.0.1:5173"];
+const allowedOrigins = [...new Set([...env.corsOrigins, env.clientUrl, ...defaultDevOrigins].filter(Boolean))];
 
 if (env.trustProxy) {
   app.set("trust proxy", 1);
